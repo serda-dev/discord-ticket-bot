@@ -1,4 +1,4 @@
-# Discord Tickets v5
+# Discord Tickets v6
 
 ![Codecov](https://img.shields.io/codecov/c/github/discord-tickets/bot?flag=unit&style=flat&logo=codecov)
 
@@ -6,20 +6,7 @@
 > [!WARNING]
 > This branch is experimental, use the `main` branch instead.
 
-## TODO
-
-- [ ] `smol`
-- [ ] `bun test` for packages
-- [ ] `tsc` test
-- [ ] <https://badges.penpow.dev/>
-
-## Stack
-
-- Optional: Nomad, Consul, Vault, LGTM, TiKV
-- SurrealDB
-- S3
-- Valkey (-sentinel): Cache & Streams
-- tRPC
+Experimental; some kind of hexagonal MVC serverless architecture.
 
 ## 🥱 License
 
@@ -27,4 +14,4 @@ Discord Tickets by eartharoid™️ is licensed under the [GPLv3 license](https:
 
 This is not an official Discord product. It is not affiliated with nor endorsed by Discord Inc.
 
-© 2025 Isaac Saunders
+© 2026 Isaac Saunders

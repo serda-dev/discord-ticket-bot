@@ -1,0 +1,18 @@
+{
+  "name": "worker-bot",
+  "version": "0.0.0",
+  "private": true,
+  "scripts": {
+    "dev": "vite",
+    "build": "tsc && vite build",
+    "preview": "vite preview",
+    "deploy": "vite build && wrangler deploy"
+  },
+  "type": "module",
+  "devDependencies": {
+    "@cloudflare/vite-plugin": "^1.53.1",
+    "typescript": "~6.0.2",
+    "vite": "^8.2.0",
+    "wrangler": "^4.125.0"
+  }
+}
