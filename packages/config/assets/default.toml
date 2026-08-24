@@ -1,8 +1,0 @@
-"$schema" = ""
-
-confv = 1          #! DO NOT EDIT THIS LINE
-log_level = "info"
-
-
-[interceptor]
-discord_api_version = 10
