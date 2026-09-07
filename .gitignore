@@ -1,6 +1,6 @@
 # directories
+.wrangler/
 coverage/
-data/
 node_modules/
 
 # files
@@ -8,5 +8,5 @@ node_modules/
 *.exe
 *.db*
 *.log
-service
+.DS_Store
 summary.md

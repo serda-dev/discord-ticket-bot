@@ -2,66 +2,68 @@
 	"name": "discord-tickets",
 	"version": "5.0.0-alpha.0",
 	"private": true,
-	"scripts": {
-		"changelog": "bun --bun x conventional-changelog -p angular -i CHANGELOG.md -s",
-		"contributors:add": "bun --bun x all-contributors add",
-		"contributors:generate": "bun --bun x all-contributors generate",
-		"dev": "docker compose -f docker/dev.compose.yml --profile dev up -w",
-		"lint": "bun --bun x eslint --fix .",
-		"prepare": "git config core.hooksPath .github/hooks || true"
-	},
-	"devDependencies": {
-		"@commitlint/cli": "^17.8.1",
-		"@commitlint/config-conventional": "^19.8.1",
-		"@eartharoid/eslint-rules-js": "^1.1.0",
-		"@eslint/js": "^9.28.0",
-		"@eslint/json": "^0.12.0",
-		"@eslint/markdown": "^6.5.0",
-		"@types/bun": "latest",
-		"all-contributors-cli": "^6.26.1",
-		"conventional-changelog-cli": "^5.0.0",
-		"eslint": "^9.28.0",
-		"globals": "^16.2.0",
-		"lint-staged": "^15.5.2",
-		"typescript-eslint": "^8.33.1"
-	},
-	"optionalDependencies": {},
-	"peerDependencies": {},
-	"author": "eartharoid",
-	"license": "GPL-3.0-or-later",
+	"description": "The most popular open-source ticket management bot for Discord.",
+	"keywords": [
+		"bot",
+		"discord",
+		"tickets"
+	],
 	"homepage": "https://discordtickets.app",
+	"bugs": {
+		"url": "https://github.com/discord-tickets/bot/issues"
+	},
+	"license": "GPL-3.0-or-later",
+	"author": "eartharoid",
 	"repository": {
 		"type": "git",
 		"url": "git+https://github.com/discord-tickets/bot.git"
 	},
-	"bugs": {
-		"url": "https://github.com/discord-tickets/bot/issues"
-	},
-	"description": "The most popular open-source ticket management bot for Discord.",
-	"keywords": [
-		"discord",
-		"tickets",
-		"bot"
-	],
 	"workspaces": {
 		"catalog": {
-			"@discordeno/rest": "21",
-			"@types/bun": "1",
-			"typescript": "5",
-			"zod": "3"
+			"typescript": "7",
+			"vite": "npm:@voidzero-dev/vite-plus-core@0.3.0",
+			"vite-plus": "0.3.0",
+			"wrangler": "^4.125.0"
 		},
 		"packages": [
 			"packages/*",
-			"services/*"
+			"workers/*"
 		]
+	},
+	"scripts": {
+		"changelog": "vp run conventional-changelog -p angular -i CHANGELOG.md -s",
+		"contributors:add": "vp run all-contributors add",
+		"contributors:generate": "vp run all-contributors generate",
+		"prepare": "vp hooks enable"
+	},
+	"devDependencies": {
+		"@commitlint/cli": "^17.8.1",
+		"@commitlint/config-conventional": "^19.8.1",
+		"all-contributors-cli": "^6.26.1",
+		"conventional-changelog-cli": "^5.0.0",
+		"lint-staged": "^15.5.2",
+		"vite": "catalog:",
+		"vite-plus": "catalog:"
+	},
+	"peerDependencies": {},
+	"optionalDependencies": {},
+	"overrides": {
+		"vite": "catalog:"
+	},
+	"lint-staged": {
+		"*.md": "bun lint",
+		"{packages,services}/**/*.{js,ts}": "bun lint"
 	},
 	"commitlint": {
 		"extends": [
 			"@commitlint/config-conventional"
 		]
 	},
-	"lint-staged": {
-		"*.md": "bun lint",
-		"{packages,services}/**/*.{js,ts}": "bun lint"
+	"devEngines": {
+		"packageManager": {
+			"name": "bun",
+			"version": "1.4.0",
+			"onFail": "download"
+		}
 	}
 }

@@ -9,27 +9,27 @@ v5 will likely be the last complete rewrite of the project and will use a micros
 Some of the reasons for rewriting and the chosen architecture are:
 
 - [x] **Easy maintenance**
-  - [x] The codebase should be maintainable in the long term with minimal effort.
-  - [x] v5 code will be more durable with types and *some* tests and documentation.
-  - [x] Microservices will allow for incremental improvements and refactoring.
+    - [x] The codebase should be maintainable in the long term with minimal effort.
+    - [x] v5 code will be more durable with types and _some_ tests and documentation.
+    - [x] Microservices will allow for incremental improvements and refactoring.
 - [ ] **Easy to extend**
-  - [ ] New features should be easy to add without significant refactoring,
-  both for this project and for forks.
+    - [ ] New features should be easy to add without significant refactoring,
+          both for this project and for forks.
 - [ ] **Observability & reliability**
-  - [ ] v4 is difficult to monitor and debug.
-  v5 will have instrumentation for logs, metrics, and traces.
+    - [ ] v4 is difficult to monitor and debug.
+          v5 will have instrumentation for logs, metrics, and traces.
 - [x] **Multi-tenancy**
-  - [x] v4 Managed instances are becoming very difficult and less profitable to manage.
-  Multi-tenancy will allow a single Cloud instance to serve multiple applications/bots
-  with very low overhead and the relative simplicity of managing a single deployment.
+    - [x] v4 Managed instances are becoming very difficult and less profitable to manage.
+          Multi-tenancy will allow a single Cloud instance to serve multiple applications/bots
+          with very low overhead and the relative simplicity of managing a single deployment.
 - [x] **Scalability & performance**
-  - [x] v5 is the first version to be designed as cloud-first with a focus on scalability.
-  Microservices could eventually allow for horizontal scaling.
+    - [x] v5 is the first version to be designed as cloud-first with a focus on scalability.
+          Microservices could eventually allow for horizontal scaling.
 - [x] **Availability**
-  - [ ] Microservices could be distributed to form a highly available cluster.
-  - [ ] Zero-downtime rollouts or at least short-downtime updates could be possible.
+    - [ ] Microservices could be distributed to form a highly available cluster.
+    - [ ] Zero-downtime rollouts or at least short-downtime updates could be possible.
 - [x] **Learning**
-  - [x] Learn something new.
+    - [x] Learn something new.
 
 ## Eventual plan
 
@@ -44,29 +44,29 @@ More nodes increase availability, but scaling 3 nodes vertically is probably mor
 Deployed with Terraform and Nomad.
 
 - ?x LGTM
-  - Observability stack
+    - Observability stack
 - 3+ `consul` (HA)
-  - Service discovery
-  - Storage for leases, configs, etc
+    - Service discovery
+    - Storage for leases, configs, etc
 - 3+ `tikv` (HA)
-  - KV store for Surreal
+    - KV store for Surreal
 - 3+ `valkey` (HA)
-  - Cache & Queues/Streams
+    - Cache & Queues/Streams
 - 2x `surrealdb`
-  - Multi-model database backed by TiKV
-  - Instances are stateless, all state is stored in TiKV
+    - Multi-model database backed by TiKV
+    - Instances are stateless, all state is stored in TiKV
 - ?x `vault`
-  - Token storage
+    - Token storage
 - 3+ `gateway`
-  - Establish websocket connections to Discord
-  - Each shard is locked/leased from Consul
-  - Forward events to stateless consumers
-  - Can be drained to transfer shards to another instance with no downtime
-  (but elevated latency)
-  - More instances reduces the number of shards orphaned by a single-instance failure.
+    - Establish websocket connections to Discord
+    - Each shard is locked/leased from Consul
+    - Forward events to stateless consumers
+    - Can be drained to transfer shards to another instance with no downtime
+      (but elevated latency)
+    - More instances reduces the number of shards orphaned by a single-instance failure.
 - 2x consumers
-  - Most microservices will be stateless, requiring either 2 load-balanced instances
-  or a single instance with automatic failover.
+    - Most microservices will be stateless, requiring either 2 load-balanced instances
+      or a single instance with automatic failover.
 
 B2 for object storage.
 
@@ -96,7 +96,7 @@ Although availability is much more important for a ticket bot than most other bo
 99.999% or even 99.99% is excessive:
 
 - Hetzner only commits to [99.9%](https://uptime.is/three-nines) uptime
-  - Although, I've had a server running for 4 years with no downtime
+    - Although, I've had a server running for 4 years with no downtime
 - Discord's uptime is probably less than [99.95%](https://uptime.is/99.95)
 
 With only 1 node (and no HA clusters), the microservice architecture could
