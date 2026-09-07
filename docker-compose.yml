@@ -21,7 +21,9 @@ services:
       MYSQL_USER: ${MYSQL_USER:-tickets}
 
   bot:
-    image: eartharoid/discord-tickets:4.0
+    build:
+      context: .
+      dockerfile: Dockerfile
     depends_on:
       - mysql
     restart: unless-stopped
